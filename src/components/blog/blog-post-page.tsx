@@ -1,21 +1,16 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+'use client'
+
+import { Link } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 import { ArrowLeft } from 'lucide-react'
-import { getBlogPost, parseMarkdownContent } from '@/lib/blog'
+import { parseMarkdownContent } from '@/lib/blog'
+import type { BlogPost } from '@/lib/blog'
 
-export const Route = createFileRoute('/_public/blog/why-open-source-wins')({
-  component: BlogPost,
-  loader: () => {
-    const post = getBlogPost('why-open-source-wins')
-    if (!post) {
-      throw new Error('Blog post not found')
-    }
-    return { post }
-  },
-})
+interface BlogPostPageProps {
+  post: BlogPost
+}
 
-function BlogPost() {
-  const { post } = Route.useLoaderData()
+export function BlogPostPage({ post }: BlogPostPageProps) {
   const contentElements = parseMarkdownContent(post.content)
 
   return (
@@ -25,22 +20,22 @@ function BlogPost() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="border-b border-black/10 bg-white/50 backdrop-blur-sm sticky top-0 z-10"
+        className="border-b border-black/10 bg-white/50 backdrop-blur-sm"
       >
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-6">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 py-2">
           <div className="flex items-center justify-between">
             <Link
               to="/"
-              className="text-xl md:text-2xl font-bold hover:opacity-60 transition-opacity duration-300"
+              className="text-base md:text-lg font-bold hover:opacity-60 transition-opacity duration-300"
               style={{ fontFamily: 'JetBrains Mono, monospace' }}
             >
               Eldad Fux
             </Link>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-sm text-black/40 hover:text-black/60 transition-colors duration-300 group"
+              className="inline-flex items-center gap-1.5 text-xs text-black/40 hover:text-black/60 transition-colors duration-300 group"
             >
-              <ArrowLeft className="w-4 h-4 transition-transform duration-300" />
+              <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300" />
               <span
                 className="uppercase tracking-[0.2em] font-medium"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
@@ -111,7 +106,6 @@ function BlogPost() {
                 )
               }
 
-              // First paragraph gets special styling
               if (index === 0) {
                 return (
                   <p

@@ -33,7 +33,7 @@ export function BlogPostsSection() {
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="group block py-6 border-b border-black/5 hover:border-black/20 transition-colors duration-300"
+            className={`group block py-6 transition-colors duration-300 ${index < blogPosts.length - 1 ? 'border-b border-black/5 hover:border-black/20' : ''}`}
           >
             <div className="flex items-start justify-between gap-8">
               <div className="flex-1 space-y-3">

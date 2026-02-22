@@ -21,7 +21,7 @@ import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-pass
 import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
 import { Route as ApiOgRouteImport } from './routes/_api/og'
 import { Route as ApiHelloRouteImport } from './routes/_api/hello'
-import { Route as PublicBlogWhyOpenSourceWinsRouteImport } from './routes/_public/blog/why-open-source-wins'
+import { Route as PublicBlogSlugRouteImport } from './routes/_public/blog/$slug'
 
 const PublicRoute = PublicRouteImport.update({
   id: '/_public',
@@ -81,14 +81,14 @@ const ApiHelloRoute = ApiHelloRouteImport.update({
   path: '/hello',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PublicBlogWhyOpenSourceWinsRoute =
-  PublicBlogWhyOpenSourceWinsRouteImport.update({
-    id: '/blog/why-open-source-wins',
-    path: '/blog/why-open-source-wins',
-    getParentRoute: () => PublicRoute,
-  } as any)
+const PublicBlogSlugRoute = PublicBlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => PublicRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof PublicIndexRoute
   '/hello': typeof ApiHelloRoute
   '/og': typeof ApiOgRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
@@ -97,10 +97,10 @@ export interface FileRoutesByFullPath {
   '/sign-out': typeof AuthSignOutRoute
   '/sign-up': typeof AuthSignUpRoute
   '/example-protected-route': typeof ProtectedExampleProtectedRouteRoute
-  '/': typeof PublicIndexRoute
-  '/blog/why-open-source-wins': typeof PublicBlogWhyOpenSourceWinsRoute
+  '/blog/$slug': typeof PublicBlogSlugRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof PublicIndexRoute
   '/hello': typeof ApiHelloRoute
   '/og': typeof ApiOgRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
@@ -109,8 +109,7 @@ export interface FileRoutesByTo {
   '/sign-out': typeof AuthSignOutRoute
   '/sign-up': typeof AuthSignUpRoute
   '/example-protected-route': typeof ProtectedExampleProtectedRouteRoute
-  '/': typeof PublicIndexRoute
-  '/blog/why-open-source-wins': typeof PublicBlogWhyOpenSourceWinsRoute
+  '/blog/$slug': typeof PublicBlogSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -126,11 +125,12 @@ export interface FileRoutesById {
   '/_auth/sign-up': typeof AuthSignUpRoute
   '/_protected/example-protected-route': typeof ProtectedExampleProtectedRouteRoute
   '/_public/': typeof PublicIndexRoute
-  '/_public/blog/why-open-source-wins': typeof PublicBlogWhyOpenSourceWinsRoute
+  '/_public/blog/$slug': typeof PublicBlogSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/hello'
     | '/og'
     | '/forgot-password'
@@ -139,10 +139,10 @@ export interface FileRouteTypes {
     | '/sign-out'
     | '/sign-up'
     | '/example-protected-route'
-    | '/'
-    | '/blog/why-open-source-wins'
+    | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/hello'
     | '/og'
     | '/forgot-password'
@@ -151,8 +151,7 @@ export interface FileRouteTypes {
     | '/sign-out'
     | '/sign-up'
     | '/example-protected-route'
-    | '/'
-    | '/blog/why-open-source-wins'
+    | '/blog/$slug'
   id:
     | '__root__'
     | '/_auth'
@@ -167,7 +166,7 @@ export interface FileRouteTypes {
     | '/_auth/sign-up'
     | '/_protected/example-protected-route'
     | '/_public/'
-    | '/_public/blog/why-open-source-wins'
+    | '/_public/blog/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -183,21 +182,21 @@ declare module '@tanstack/react-router' {
     '/_public': {
       id: '/_public'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof PublicRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_protected': {
       id: '/_protected'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof ProtectedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth': {
       id: '/_auth'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -264,11 +263,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiHelloRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_public/blog/why-open-source-wins': {
-      id: '/_public/blog/why-open-source-wins'
-      path: '/blog/why-open-source-wins'
-      fullPath: '/blog/why-open-source-wins'
-      preLoaderRoute: typeof PublicBlogWhyOpenSourceWinsRouteImport
+    '/_public/blog/$slug': {
+      id: '/_public/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof PublicBlogSlugRouteImport
       parentRoute: typeof PublicRoute
     }
   }
@@ -306,12 +305,12 @@ const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
 
 interface PublicRouteChildren {
   PublicIndexRoute: typeof PublicIndexRoute
-  PublicBlogWhyOpenSourceWinsRoute: typeof PublicBlogWhyOpenSourceWinsRoute
+  PublicBlogSlugRoute: typeof PublicBlogSlugRoute
 }
 
 const PublicRouteChildren: PublicRouteChildren = {
   PublicIndexRoute: PublicIndexRoute,
-  PublicBlogWhyOpenSourceWinsRoute: PublicBlogWhyOpenSourceWinsRoute,
+  PublicBlogSlugRoute: PublicBlogSlugRoute,
 }
 
 const PublicRouteWithChildren =
