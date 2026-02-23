@@ -27,6 +27,18 @@ const scripts: React.DetailedHTMLProps<
   HTMLScriptElement
 >[] = []
 
+// Plausible analytics (privacy-friendly)
+scripts.push({
+  src: 'https://plausible.io/js/pa-hxok5HEc60OQlA9_4K7lv.js',
+  async: true,
+})
+scripts.push({
+  dangerouslySetInnerHTML: {
+    __html:
+      'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()',
+  },
+})
+
 if (import.meta.env.VITE_INSTRUMENTATION_SCRIPT_SRC) {
   scripts.push({
     src: import.meta.env.VITE_INSTRUMENTATION_SCRIPT_SRC,

@@ -25,6 +25,24 @@ export type OGMetaTags = {
   twitterHandle?: string
 }
 
+/** Default OG image for the main blog (used when /og is called with no params). */
+export const defaultBlogOGConfig: OGImageConfig = {
+  isCustom: false,
+  title: 'Eldad Fux Personal Blog',
+  description:
+    'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
+  width: 1200,
+  height: 630,
+  backgroundColor: '#0d0c0a',
+  titleColor: '#e6e2db',
+  descriptionColor: '#a39e96',
+  fontSize: {
+    title: 56,
+    description: 28,
+  },
+  borderRadius: 12,
+}
+
 export const defaultCustomOGConfig: OGImageConfig = {
   isCustom: true,
   title: 'Imagine App',

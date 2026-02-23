@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ImageResponse } from '@vercel/og'
 import { getBaseUrl } from '@/server/functions/request'
-import { defaultCustomOGConfig } from '@/lib/og-config'
-import { getScreenshot } from '@/server/lib/avatars'
+import {
+  defaultBlogOGConfig,
+  defaultCustomOGConfig,
+} from '@/lib/og-config'
 
 async function loadGoogleFont(font: string, text: string) {
   const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(text)}`
@@ -30,29 +32,14 @@ export const Route = createFileRoute('/_api/og')({
         const baseUrl = await getBaseUrl()
 
         if (!searchParams.toString()) {
-          const assetUrl = new URL('/default-og-image.png', baseUrl)
-          const assetResponse = await fetch(assetUrl)
+          const cfg = defaultBlogOGConfig
+          const title = cfg.title ?? ''
+          const description = cfg.description ?? ''
+          const text = `${title}${description ? ` ${description}` : ''}`
+          const fontData = await loadGoogleFont('Fraunces', text)
+          const width = cfg.width ?? 1200
+          const height = cfg.height ?? 630
 
-          if (!assetResponse.ok || !assetResponse.body) {
-            return new Response('Default OG image not found', {
-              status: 500,
-            })
-          }
-
-          let screenshotArrayBuffer: ArrayBuffer | null = null
-          try {
-            screenshotArrayBuffer = await getScreenshot(
-              baseUrl,
-              870,
-              543,
-              1, // seconds to wait before taking screenshot
-            )
-          } catch (error) {
-            console.error('Failed to generate screenshot:', error)
-            // Continue without screenshot overlay
-          }
-
-          // Create a composite image with screenshot overlay
           return new ImageResponse(
             <div
               style={{
@@ -60,35 +47,88 @@ export const Route = createFileRoute('/_api/og')({
                 width: '100%',
                 height: '100%',
                 position: 'relative',
+                backgroundColor: cfg.backgroundColor ?? '#0d0c0a',
               }}
             >
-              {/* Background image */}
-              <img
-                src={assetUrl.toString()}
+              <div
                 style={{
-                  position: 'absolute',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
                   width: '100%',
                   height: '100%',
+                  padding: '60px',
+                  fontFamily: 'Fraunces, serif',
                 }}
-              />
-              {/* Screenshot overlay - only render if screenshot was successful */}
-              {screenshotArrayBuffer && (
-                <img
-                  src={`data:image/png;base64,${Buffer.from(screenshotArrayBuffer).toString('base64')}`}
+              >
+                <div
                   style={{
-                    position: 'absolute',
-                    left: '510px',
-                    top: '44px',
-                    width: '870px',
-                    height: '543px',
-                    borderRadius: '14.48px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                    maxWidth: '90%',
+                    fontFamily: 'Fraunces, serif',
                   }}
-                />
-              )}
+                >
+                  {/* E logo */}
+                  <div
+                    style={{
+                      marginBottom: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: 72,
+                      height: 72,
+                      borderRadius: '50%',
+                      backgroundColor: '#e6e2db',
+                      justifyContent: 'center',
+                      fontSize: 36,
+                      fontWeight: 700,
+                      color: '#0d0c0a',
+                      fontFamily: 'Fraunces, serif',
+                    }}
+                  >
+                    E
+                  </div>
+                  <h1
+                    style={{
+                      fontSize: `${cfg.fontSize?.title ?? 56}px`,
+                      color: cfg.titleColor ?? '#e6e2db',
+                      margin: 0,
+                      marginBottom: description ? '30px' : 0,
+                      fontWeight: 'bold',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {title}
+                  </h1>
+                  {description && (
+                    <p
+                      style={{
+                        fontSize: `${cfg.fontSize?.description ?? 28}px`,
+                        color: cfg.descriptionColor ?? '#a39e96',
+                        margin: 0,
+                        lineHeight: 1.4,
+                        maxWidth: '90%',
+                      }}
+                    >
+                      {description}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>,
             {
-              width: 1200,
-              height: 630,
+              width,
+              height,
+              fonts: [
+                {
+                  name: 'Fraunces',
+                  data: fontData,
+                  style: 'normal',
+                },
+              ],
             },
           ) as unknown as Response
         }
