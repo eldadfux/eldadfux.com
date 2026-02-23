@@ -58,7 +58,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     const metadata: OGMetaTags = {
       title: 'Eldad Fux Personal Blog',
       description:
-        'Minimalistic personal blog showcasing open source projects, developer insights, and vibe-coding experiments from the founder of Appwrite.io and Imagine.dev.',
+        'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
       image: ogImageUrl,
       url: typeof window !== 'undefined' ? window.location.href : baseUrl,
     }
@@ -80,11 +80,59 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         {
           name: 'description',
           content:
-            'Minimalistic personal blog showcasing open source projects, developer insights, and vibe-coding experiments from the founder of Appwrite.io and Imagine.dev.',
+            'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
         },
+        { property: 'og:site_name', content: 'Eldad Fux Personal Blog' },
+        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
         ...ogTags.meta,
       ],
       links: [
+        // Single SVG favicon: adapts to prefers-color-scheme via internal media query
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg',
+        },
+        // PNG fallbacks when SVG isn’t used; dark-mode links so fallback isn’t dark-on-dark
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32-dark.png',
+          media: '(prefers-color-scheme: dark)',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16-dark.png',
+          media: '(prefers-color-scheme: dark)',
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon-dark.png',
+          media: '(prefers-color-scheme: dark)',
+        },
         {
           rel: 'stylesheet',
           href: appCss,
@@ -100,7 +148,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500&display=swap',
         },
       ],
       scripts: [...scripts],
@@ -116,10 +164,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body style={{ fontFamily: 'Inter, sans-serif' }}>
+      <body style={{ fontFamily: 'Inter, sans-serif' }} className="bg-[#0d0c0a] text-[#e6e2db]">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

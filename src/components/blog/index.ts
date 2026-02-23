@@ -1,5 +1,4 @@
 export { HeroSection } from './hero-section'
-export { CompaniesSection } from './companies-section'
 export { BlogPostsSection } from './blog-posts-section'
 export { BlogPostPage } from './blog-post-page'
 export { ExperimentsSection } from './experiments-section'

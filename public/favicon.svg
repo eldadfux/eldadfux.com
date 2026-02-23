@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+  <style>
+    .circle { fill: #1a1a1a; }
+    .ef { fill: #fff; }
+    @media (prefers-color-scheme: dark) {
+      .circle { fill: #e5e5e5; }
+      .ef { fill: #1a1a1a; }
+    }
+  </style>
+  <circle class="circle" cx="16" cy="16" r="15"/>
+  <g transform="translate(2, 2) scale(0.875)">
+    <path class="ef" fill-rule="evenodd" d="M0 0h10v4H4v5h5v3H4v5h6v4H0V0Z"/>
+    <path class="ef" fill-rule="evenodd" d="M18 0h10v4h-7v5h6v3h-6v13H18V0Z"/>
+  </g>
+</svg>

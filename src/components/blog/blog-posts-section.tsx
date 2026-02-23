@@ -8,54 +8,59 @@ export function BlogPostsSection() {
   const blogPosts = getAllBlogPosts()
 
   return (
-    <section className="py-24 border-t border-black/10">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="text-sm uppercase tracking-[0.3em] font-medium mb-16 text-black/40"
-        style={{ fontFamily: 'JetBrains Mono, monospace' }}
-      >
-        Thoughts about...
-      </motion.h2>
-
-      <div className="space-y-8">
-        {blogPosts.map((post, index) => (
-          <motion.a
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{
-              duration: 0.5,
-              delay: index * 0.08,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className={`group block py-6 transition-colors duration-300 ${index < blogPosts.length - 1 ? 'border-b border-black/5 hover:border-black/20' : ''}`}
-          >
-            <div className="flex items-start justify-between gap-8">
-              <div className="flex-1 space-y-3">
-                <div className="flex items-baseline gap-4">
-                  <h3 className="text-2xl md:text-3xl font-medium group-hover:opacity-60 transition-opacity duration-300">
+    <section className="py-32 md:py-40 px-6 md:px-12 lg:px-20 border-t border-[#2a2825]">
+      <div className="max-w-5xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+          className="text-[11px] uppercase tracking-[0.35em] text-[#8a8580] font-medium mb-16"
+          style={{ fontFamily: 'JetBrains Mono, monospace' }}
+        >
+          Writing
+        </motion.p>
+        <ul className="space-y-0">
+          {blogPosts.map((post, index) => (
+            <motion.li
+              key={post.slug}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <a
+                href={`/blog/${post.slug}`}
+                className="group flex items-baseline gap-6 md:gap-8 py-6 md:py-7 border-b border-[#2a2825] hover:border-[#3d3a36] transition-colors"
+              >
+                <span
+                  className="text-[#5a5652] text-sm tabular-nums shrink-0 group-hover:text-[#2dd4bf] transition-colors w-8"
+                  style={{ fontFamily: 'JetBrains Mono, monospace' }}
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <h3
+                    className="text-xl md:text-2xl font-semibold text-[#e6e2db] group-hover:text-[#2dd4bf] transition-colors leading-tight"
+                    style={{ fontFamily: 'Fraunces, serif' }}
+                  >
                     {post.title}
                   </h3>
-                  <span
-                    className="text-xs uppercase tracking-[0.2em] text-black/30 font-medium whitespace-nowrap"
-                    style={{ fontFamily: 'JetBrains Mono, monospace' }}
-                  >
-                    {post.date}
-                  </span>
+                  <p className="text-[#8a8580] text-sm md:text-base mt-1.5 leading-relaxed">
+                    {post.description}
+                  </p>
                 </div>
-                <p className="text-base md:text-lg text-black/50 font-light leading-relaxed">
-                  {post.description}
-                </p>
-              </div>
-              <ArrowUpRight className="w-5 h-5 text-black/20 group-hover:text-black/60 transition-colors duration-300 flex-shrink-0 mt-2" />
-            </div>
-          </motion.a>
-        ))}
+                <span
+                  className="text-[11px] uppercase tracking-[0.2em] text-[#5a5652] shrink-0 group-hover:text-[#8a8580] transition-colors"
+                  style={{ fontFamily: 'JetBrains Mono, monospace' }}
+                >
+                  {post.date}
+                </span>
+                <ArrowUpRight className="w-5 h-5 text-[#5a5652] group-hover:text-[#2dd4bf] shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+              </a>
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </section>
   )
