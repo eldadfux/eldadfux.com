@@ -4,6 +4,7 @@ import {
   createRootRouteWithContext,
 } from '@tanstack/react-router'
 import appCss from '../styles.css?url'
+import { useEffect, useState } from 'react'
 
 import type { QueryClient } from '@tanstack/react-query'
 import { Toaster } from '@/components/ui/sonner'
@@ -158,6 +159,23 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   shellComponent: RootDocument,
 })
 
+function ThemeProviderWrapper({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted) return <>{children}</>
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </ThemeProvider>
+  )
+}
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -165,12 +183,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body style={{ fontFamily: 'Inter, sans-serif' }} className="bg-[#0d0c0a] text-[#e6e2db]">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProviderWrapper>
           {children}
           <Toaster />
           {/* <TanStackDevtools
@@ -185,7 +198,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
               TanStackQueryDevtools,
             ]}
           /> */}
-        </ThemeProvider>
+        </ThemeProviderWrapper>
         <Scripts />
       </body>
     </html>

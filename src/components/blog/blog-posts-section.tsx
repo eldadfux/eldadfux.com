@@ -28,6 +28,7 @@ export function BlogPostsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className="last:[&>a]:border-b-0"
             >
               <a
                 href={`/blog/${post.slug}`}

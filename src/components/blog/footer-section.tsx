@@ -1,12 +1,12 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Github, Twitter, Linkedin } from 'lucide-react'
+import { FaGithub, FaXTwitter, FaLinkedin } from 'react-icons/fa6'
 
 const socialLinks = [
-  { name: 'GitHub', url: 'https://github.com/eldadfux', icon: Github },
-  { name: 'Twitter', url: 'https://twitter.com/eldadfux', icon: Twitter },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/eldadfux', icon: Linkedin },
+  { name: 'GitHub', url: 'https://github.com/eldadfux', icon: FaGithub },
+  { name: 'X', url: 'https://twitter.com/eldadfux', icon: FaXTwitter },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/eldadfux', icon: FaLinkedin },
 ]
 
 export function FooterSection() {

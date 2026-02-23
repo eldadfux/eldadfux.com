@@ -19,12 +19,6 @@ function slugifyHeading(text: string): string {
 
 export function BlogPostPage({ post }: BlogPostPageProps) {
   const contentElements = parseMarkdownContent(post.content)
-  const headings = contentElements
-    .filter((el): el is { type: 'h2'; content: string } => el.type === 'h2')
-    .map((el) => ({ title: el.content, id: slugifyHeading(el.content) }))
-
-  const mainMaxWidth =
-    headings.length > 0 ? 'max-w-[70rem]' : 'max-w-3xl'
 
   return (
     <div className="min-h-screen bg-[#0d0c0a] text-[#e6e2db]">
@@ -35,10 +29,10 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
         transition={{ duration: 0.4 }}
         className="sticky top-0 z-10 border-b border-[#2a2825] bg-[#0d0c0a]/90 backdrop-blur-md"
       >
-        <div className={`${mainMaxWidth} mx-auto px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between`}>
+        <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-20 py-6 flex items-center justify-between">
           <Link
             to="/"
-            className="text-sm font-medium text-[#e6e2db] hover:text-[#2dd4bf] transition-colors"
+            className="text-xl font-semibold text-[#e6e2db] hover:text-[#2dd4bf] transition-colors"
             style={{ fontFamily: 'Fraunces, serif' }}
           >
             Eldad Fux
@@ -54,10 +48,8 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
         </div>
       </motion.header>
 
-      <div
-        className={`flex gap-12 lg:gap-16 px-6 md:px-12 lg:px-20 pt-14 pb-16 mx-auto ${mainMaxWidth}`}
-      >
-        <div className="min-w-0 max-w-3xl flex-1">
+      <div className="max-w-5xl px-6 md:px-12 lg:px-20 pt-14 pb-16 mx-auto">
+        <div className="min-w-0">
           <motion.header
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,7 +79,7 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="min-w-0"
           >
-            <div className="space-y-8 text-[#a8a39e] leading-relaxed">
+            <div className="max-w-2xl space-y-8 text-[#a8a39e] leading-relaxed">
               {contentElements.map((element, index) => {
                 if (element.type === 'h2') {
                   const id = slugifyHeading(element.content)
@@ -149,36 +141,11 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
             </footer>
           </motion.article>
         </div>
-
-        {headings.length > 0 && (
-          <aside
-            className="hidden lg:block w-72 shrink-0 pt-2 sticky top-28 self-start"
-            aria-label="On this page"
-          >
-            <p
-              className="text-[11px] uppercase tracking-[0.2em] text-[#8a8580] font-medium mb-4"
-              style={{ fontFamily: 'JetBrains Mono, monospace' }}
-            >
-              On this page
-            </p>
-            <nav className="flex flex-col gap-2">
-              {headings.map(({ title, id }) => (
-                <a
-                  key={id}
-                  href={`#${id}`}
-                  className="text-sm text-[#8a8580] hover:text-[#2dd4bf] transition-colors leading-snug border-l-2 border-transparent hover:border-[#2dd4bf]/50 pl-3 -ml-px"
-                >
-                  {title}
-                </a>
-              ))}
-            </nav>
-          </aside>
-        )}
       </div>
 
       {/* Site footer — matches main section width */}
       <footer className="py-16 md:py-20 px-6 md:px-12 lg:px-20 border-t border-[#2a2825]">
-        <div className={`${mainMaxWidth} mx-auto`}>
+        <div className="max-w-5xl mx-auto">
           <p
             className="text-[11px] text-[#5a5652] tracking-[0.12em] uppercase"
             style={{ fontFamily: 'JetBrains Mono, monospace' }}
