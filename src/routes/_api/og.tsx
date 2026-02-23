@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ImageResponse } from '@vercel/og'
-import { getBaseUrl } from '@/server/functions/request'
 import {
   defaultBlogOGConfig,
   defaultCustomOGConfig,
@@ -28,8 +27,6 @@ export const Route = createFileRoute('/_api/og')({
     handlers: {
       GET: async ({ request }) => {
         const { searchParams } = new URL(request.url)
-
-        const baseUrl = await getBaseUrl()
 
         if (!searchParams.toString()) {
           const cfg = defaultBlogOGConfig
