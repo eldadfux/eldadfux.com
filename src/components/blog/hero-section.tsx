@@ -18,7 +18,7 @@ export function HeroSection() {
           className="text-[clamp(3.5rem,12vw,9rem)] font-bold leading-[0.88] tracking-[-0.03em] text-[#e6e2db] mb-12"
           style={{ fontFamily: 'Fraunces, serif' }}
         >
-          Eldad <span className="text-[0.6em]">A. Fux</span>
+          Eldad <span className="text-[0.6em]">A.</span> Fux
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
