@@ -7,6 +7,7 @@ import appCss from '../styles.css?url'
 import { useEffect, useState } from 'react'
 
 import type { QueryClient } from '@tanstack/react-query'
+import { PlausibleInit } from '@/components/plausible-init'
 import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from 'next-themes'
 import { authMiddleware } from '@/server/functions/auth'
@@ -26,18 +27,6 @@ const scripts: React.DetailedHTMLProps<
   React.ScriptHTMLAttributes<HTMLScriptElement>,
   HTMLScriptElement
 >[] = []
-
-// Plausible analytics (privacy-friendly)
-scripts.push({
-  src: 'https://plausible.io/js/pa-hxok5HEc60OQlA9_4K7lv.js',
-  async: true,
-})
-scripts.push({
-  dangerouslySetInnerHTML: {
-    __html:
-      'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()',
-  },
-})
 
 if (import.meta.env.VITE_INSTRUMENTATION_SCRIPT_SRC) {
   scripts.push({
@@ -197,6 +186,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body style={{ fontFamily: 'Inter, sans-serif' }} className="bg-[#0d0c0a] text-[#e6e2db]">
         <ThemeProviderWrapper>
           {children}
+          <PlausibleInit />
           <Toaster />
           {/* <TanStackDevtools
             config={{
