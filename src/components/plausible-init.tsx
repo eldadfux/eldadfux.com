@@ -1,18 +1,25 @@
-import { init } from '@plausible-analytics/tracker'
 import { useEffect } from 'react'
 
 const PLAUSIBLE_DOMAIN = 'eldadfux.com'
 
+let plausibleInitialized = false
+
 /**
  * Client-only Plausible analytics init.
- * Must run in browser; init() is no-op during SSR.
+ * Dynamic import ensures the tracker is only loaded in the browser, avoiding
+ * SSR/resolution issues with rolldown and @plausible-analytics/tracker.
+ * Guard ensures init() is only called once (React Strict Mode / HMR can run effect twice).
  */
 export function PlausibleInit() {
   useEffect(() => {
-    init({
-      domain: PLAUSIBLE_DOMAIN,
-      // bindToWindow: true (default) so Plausible's verification tool can detect the install
-      autoCapturePageviews: true,
+    if (plausibleInitialized) return
+    void import('@plausible-analytics/tracker').then(({ init }) => {
+      if (plausibleInitialized) return
+      init({
+        domain: PLAUSIBLE_DOMAIN,
+        autoCapturePageviews: true,
+      })
+      plausibleInitialized = true
     })
   }, [])
   return null
