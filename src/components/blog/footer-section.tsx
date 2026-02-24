@@ -24,7 +24,7 @@ export function FooterSection() {
             className="text-xl font-semibold text-[#e6e2db]"
             style={{ fontFamily: 'Fraunces, serif' }}
           >
-            Eldad Fux
+            Eldad A. Fux
           </p>
           <div className="flex gap-4">
             {socialLinks.map((link) => {

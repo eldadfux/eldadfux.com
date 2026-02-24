@@ -1,6 +1,6 @@
 {
-  "short_name": "Eldad Fux",
-  "name": "Eldad Fux Personal Blog",
+  "short_name": "Eldad's Blog",
+  "name": "Eldad's Blog",
   "icons": [
     { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
     { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png", "purpose": "any" },

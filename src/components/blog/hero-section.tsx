@@ -18,7 +18,7 @@ export function HeroSection() {
           className="text-[clamp(3.5rem,12vw,9rem)] font-bold leading-[0.88] tracking-[-0.03em] text-[#e6e2db] mb-12"
           style={{ fontFamily: 'Fraunces, serif' }}
         >
-          Eldad Fux
+          Eldad <span className="text-[0.6em]">A. Fux</span>
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -26,28 +26,8 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="space-y-6"
         >
-          <p className="text-xl md:text-2xl font-light text-[#8a8580] leading-relaxed">
-            Founder & CEO @{' '}
-            <a
-              href="https://appwrite.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#2dd4bf] hover:text-[#5eead4] transition-colors font-medium"
-            >
-              Appwrite
-            </a>{' '}
-            and{' '}
-            <a
-              href="https://imagine.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#2dd4bf] hover:text-[#5eead4] transition-colors font-medium"
-            >
-              Imagine.dev
-            </a>
-          </p>
           <p className="text-lg md:text-xl font-light text-[#8a8580] leading-relaxed">
-            Thoughts about open source, developer tooling, product design, and
+            Thoughts about startups, open source, developer tooling, product design, and
             vibe-coding.
           </p>
         </motion.div>

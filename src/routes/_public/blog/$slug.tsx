@@ -53,18 +53,18 @@ export const Route = createFileRoute('/_public/blog/$slug')({
       ...(publishedTime && { datePublished: publishedTime }),
       author: {
         '@type': 'Person',
-        name: 'Eldad Fux',
+        name: 'Eldad A. Fux',
       },
     }
 
     return {
       meta: [
-        { title: `${post.title} | Eldad Fux` },
+        { title: `${post.title} | Eldad A. Fux` },
         ...ogTags.meta,
         ...(publishedTime
           ? [{ property: 'article:published_time', content: publishedTime }]
           : []),
-        { property: 'article:author', content: 'Eldad Fux' },
+        { property: 'article:author', content: 'Eldad A. Fux' },
         { property: 'article:section', content: 'Blog' },
       ],
       links: [{ rel: 'canonical', href: url }],

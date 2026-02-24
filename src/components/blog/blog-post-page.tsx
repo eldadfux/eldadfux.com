@@ -35,7 +35,7 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
             className="text-xl font-semibold text-[#e6e2db] hover:text-[#2dd4bf] transition-colors"
             style={{ fontFamily: 'Fraunces, serif' }}
           >
-            Eldad Fux
+            Eldad A. Fux
           </Link>
           <Link
             to="/"
@@ -127,9 +127,8 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
                   className="text-lg font-semibold text-[#e6e2db]"
                   style={{ fontFamily: 'Fraunces, serif' }}
                 >
-                  Eldad Fux
+                  Eldad A. Fux
                 </p>
-                <p className="text-sm text-[#8a8580]">Founder & CEO @ Appwrite</p>
               </div>
               <Link
                 to="/"

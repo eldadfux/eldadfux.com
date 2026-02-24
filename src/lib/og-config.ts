@@ -28,7 +28,7 @@ export type OGMetaTags = {
 /** Default OG image for the main blog (used when /og is called with no params). */
 export const defaultBlogOGConfig: OGImageConfig = {
   isCustom: false,
-  title: 'Eldad Fux Personal Blog',
+  title: 'Eldad\'s Blog',
   description:
     'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
   width: 1200,

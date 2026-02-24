@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { getBaseUrl } from '@/server/functions/request'
 import { HeroSection } from '@/components/blog/hero-section'
 import { BlogPostsSection } from '@/components/blog/blog-posts-section'
+import { OpenSourceSection } from '@/components/blog/open-source-section'
+import { ExperienceSection } from '@/components/blog/experience-section'
 import { FooterSection } from '@/components/blog/footer-section'
 
 export const Route = createFileRoute('/_public/')({
@@ -16,7 +18,7 @@ export const Route = createFileRoute('/_public/')({
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Eldad Fux Personal Blog',
+      name: 'Eldad\'s Blog',
       url: canonical,
       description:
         'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
@@ -39,6 +41,8 @@ function Index() {
       <div className="relative">
         <HeroSection />
         <BlogPostsSection />
+        <OpenSourceSection />
+        <ExperienceSection />
         <FooterSection />
       </div>
     </div>
