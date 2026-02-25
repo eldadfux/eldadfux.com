@@ -5,4 +5,4 @@ bun install
 bun run dev
 ```
 
-Hello.
+Hello world.
