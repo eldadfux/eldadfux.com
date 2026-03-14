@@ -24,7 +24,8 @@ export const Route = createFileRoute('/_public/blog/$slug')({
     const url = `${baseUrl.replace(/\/$/, '')}/blog/${params.slug}`
     const ogImageUrl = generateOGImageUrl(
       {
-        isCustom: true,
+        isCustom: false,
+        variant: 'blog',
         title: post.title,
         description: post.description,
       },

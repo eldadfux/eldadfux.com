@@ -34,11 +34,14 @@ function parseMarkdown(markdown: string): {
 
 // Convert markdown to HTML-like structure for rendering
 export function parseMarkdownContent(content: string): Array<{
-  type: 'p' | 'h2' | 'hr'
+  type: 'p' | 'h2' | 'hr' | 'quote'
   content: string
 }> {
   const lines = content.trim().split('\n')
-  const elements: Array<{ type: 'p' | 'h2' | 'hr'; content: string }> = []
+  const elements: Array<{
+    type: 'p' | 'h2' | 'hr' | 'quote'
+    content: string
+  }> = []
   let currentParagraph = ''
 
   for (let i = 0; i < lines.length; i++) {
@@ -61,6 +64,23 @@ export function parseMarkdownContent(content: string): Array<{
         currentParagraph = ''
       }
       elements.push({ type: 'h2', content: line.substring(3) })
+      continue
+    }
+
+    // Blockquote / pull quote
+    if (line.startsWith('>')) {
+      if (currentParagraph) {
+        elements.push({ type: 'p', content: currentParagraph.trim() })
+        currentParagraph = ''
+      }
+
+      const quoteLines = [line.replace(/^>\s?/, '').trim()]
+      while (i + 1 < lines.length && lines[i + 1].trim().startsWith('>')) {
+        i += 1
+        quoteLines.push(lines[i].trim().replace(/^>\s?/, '').trim())
+      }
+
+      elements.push({ type: 'quote', content: quoteLines.join(' ').trim() })
       continue
     }
 

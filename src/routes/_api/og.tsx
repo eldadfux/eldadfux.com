@@ -27,15 +27,36 @@ export const Route = createFileRoute('/_api/og')({
     handlers: {
       GET: async ({ request }) => {
         const { searchParams } = new URL(request.url)
+        const variant =
+          searchParams.get('variant') === 'custom' ? 'custom' : 'blog'
 
-        if (!searchParams.toString()) {
-          const cfg = defaultBlogOGConfig
-          const title = cfg.title ?? ''
-          const description = cfg.description ?? ''
+        if (variant === 'blog') {
+          const title = searchParams.get('title') || defaultBlogOGConfig.title || ''
+          const description =
+            searchParams.get('description') ||
+            defaultBlogOGConfig.description ||
+            ''
+          const bgColor =
+            searchParams.get('bgColor') || defaultBlogOGConfig.backgroundColor
+          const titleColor =
+            searchParams.get('titleColor') || defaultBlogOGConfig.titleColor
+          const descriptionColor =
+            searchParams.get('descriptionColor') ||
+            defaultBlogOGConfig.descriptionColor
+          const titleSize = parseInt(
+            searchParams.get('titleSize') ||
+              defaultBlogOGConfig.fontSize?.title.toString() ||
+              '56',
+          )
+          const descSize = parseInt(
+            searchParams.get('descSize') ||
+              defaultBlogOGConfig.fontSize?.description.toString() ||
+              '28',
+          )
+          const width = defaultBlogOGConfig.width ?? 1200
+          const height = defaultBlogOGConfig.height ?? 630
           const text = `${title}${description ? ` ${description}` : ''}`
           const fontData = await loadGoogleFont('Fraunces', text)
-          const width = cfg.width ?? 1200
-          const height = cfg.height ?? 630
 
           return new ImageResponse(
             <div
@@ -44,7 +65,7 @@ export const Route = createFileRoute('/_api/og')({
                 width: '100%',
                 height: '100%',
                 position: 'relative',
-                backgroundColor: cfg.backgroundColor ?? '#0d0c0a',
+                backgroundColor: bgColor ?? '#0d0c0a',
               }}
             >
               <div
@@ -90,8 +111,8 @@ export const Route = createFileRoute('/_api/og')({
                   </div>
                   <h1
                     style={{
-                      fontSize: `${cfg.fontSize?.title ?? 56}px`,
-                      color: cfg.titleColor ?? '#e6e2db',
+                      fontSize: `${titleSize}px`,
+                      color: titleColor ?? '#e6e2db',
                       margin: 0,
                       marginBottom: description ? '30px' : 0,
                       fontWeight: 'bold',
@@ -103,8 +124,8 @@ export const Route = createFileRoute('/_api/og')({
                   {description && (
                     <p
                       style={{
-                        fontSize: `${cfg.fontSize?.description ?? 28}px`,
-                        color: cfg.descriptionColor ?? '#a39e96',
+                        fontSize: `${descSize}px`,
+                        color: descriptionColor ?? '#a39e96',
                         margin: 0,
                         lineHeight: 1.4,
                         maxWidth: '90%',

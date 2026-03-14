@@ -12,6 +12,8 @@ AI is starting to change that. Not by removing the need for good engineering jud
 
 That shift matters because it changes what contribution depends on. For years, open source contribution was gated by implementation fluency and local knowledge. Increasingly, it will be gated by something else: understanding intent.
 
+> Open source contribution was gated by implementation fluency and local knowledge. Increasingly, it will be gated by something else: understanding intent.
+
 ## The real barrier was never just code
 
 Most maintainers have seen the same pattern play out over and over. A new contributor arrives with good instincts and genuine motivation, but before they can ship anything valuable they need help answering a long list of contextual questions. Where does this feature belong? Why does this abstraction exist? Is this the kind of change that should go into core, or should it live in an extension? What naming pattern is expected here? How should tests be written? What tradeoffs does this project usually accept, and which ones does it reject?
@@ -34,6 +36,8 @@ It means more contributors can participate meaningfully. It means more people ca
 
 None of this reduces the importance of rigor. In fact, the opposite is true. As contribution becomes easier, the volume of potential contributions will rise, including low-signal changes. The answer is not to lower standards. The answer is to make standards easier to understand and easier to follow.
 
+> As contribution becomes easier, the volume of potential contributions will rise. The answer is not to lower standards. The answer is to make standards easier to understand and easier to follow.
+
 ## Contribution is becoming more intent-driven
 
 The deeper change is not just that AI makes contribution faster. It is that it changes what matters most.
@@ -45,6 +49,8 @@ That is a much better filter for both contributors and maintainers.
 Code still matters. Good code will always matter. But code is becoming less of a gatekeeping mechanism. More and more of the mechanical work of producing syntactically correct, stylistically aligned code can be supported by tools. What remains scarce is judgment: knowing what should be built, what should not be built, and how a change fits into the long-term philosophy of a project.
 
 This is why the people behind a project matter more, not less, in an AI-native world. When code becomes easier to generate, the real leverage shifts toward vision, consistency, taste, and trust. The strongest projects will not necessarily be the ones with the most impenetrable implementation advantage. They will be the ones that can clearly express what they stand for and make that legible to contributors, reviewers, and the tools those contributors use.
+
+> When code becomes easier to generate, the real leverage shifts toward vision, consistency, taste, and trust.
 
 ## Maintainers need to optimize for legibility
 
@@ -69,6 +75,8 @@ This is where skills become especially valuable.
 A skill gives maintainers a way to express project-specific guidance in a more operational form. Instead of hoping contributors or agents absorb philosophy indirectly from historical pull requests, maintainers can state what good looks like more explicitly. That can include preferred abstractions, naming rules, acceptable tradeoffs, performance expectations, architectural boundaries, and the kinds of changes that are usually rejected in review.
 
 That is powerful because it moves judgment upstream.
+
+> Rather than repeating the same feedback across dozens of contributions, maintainers can package more of their reasoning into something reusable.
 
 Rather than repeating the same feedback across dozens of contributions, maintainers can package more of their reasoning into something reusable. A contributor working with an agent can then generate work that already reflects the maintainers' standards and working style. The agent is not replacing judgment. It is applying judgment that has been made more accessible.
 
@@ -109,5 +117,7 @@ That could make open source growth far more compounding than it has been in the 
 But that outcome is not automatic. The projects that benefit most will be the ones that treat repository clarity as a strategic advantage. They will invest in being legible. They will make contribution paths explicit. They will document not only workflows, but reasoning. They will structure issues and codebases so that humans and agents can both understand them. And they will find better ways to encode maintainer judgment into the systems around the repository, not just into review comments after the fact.
 
 AI is not making maintainers less important. It is making their clarity, philosophy, and structure far more important.
+
+> As code becomes less of a barrier, open source can become more open in practice, not just in license.
 
 That is the real opportunity here. As code becomes less of a barrier, open source can become more open in practice, not just in license. And the projects that embrace that shift thoughtfully may find that contribution, experimentation, and ecosystem growth start to scale in ways that were much harder to achieve before.

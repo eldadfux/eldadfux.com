@@ -102,6 +102,21 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
                     />
                   )
                 }
+                if (element.type === 'quote') {
+                  return (
+                    <blockquote
+                      key={index}
+                      className="my-10 border-l-2 border-[#2dd4bf] pl-6 md:pl-8 py-1"
+                    >
+                      <p
+                        className="text-2xl md:text-3xl leading-[1.35] text-[#e6e2db]"
+                        style={{ fontFamily: 'Fraunces, serif' }}
+                      >
+                        "{element.content}"
+                      </p>
+                    </blockquote>
+                  )
+                }
                 if (index === 0) {
                   return (
                     <p

@@ -1,5 +1,6 @@
 export type OGImageConfig = {
   isCustom: boolean
+  variant?: 'blog' | 'custom'
   title?: string
   description?: string
   image?: string
@@ -64,14 +65,27 @@ export function generateOGImageUrl(
   baseUrl: string,
 ): string {
   const defaultOGUrl = `${baseUrl.replace(/\/$/, '')}/og`
+  const variant = config.variant ?? (config.isCustom ? 'custom' : 'blog')
+  const defaults =
+    variant === 'blog' ? defaultBlogOGConfig : defaultCustomOGConfig
+  const merged = { ...defaults, ...config, variant }
 
-  if (!config.isCustom) {
+  const isDefaultBlogImage =
+    variant === 'blog' &&
+    merged.title === defaultBlogOGConfig.title &&
+    merged.description === defaultBlogOGConfig.description &&
+    merged.backgroundColor === defaultBlogOGConfig.backgroundColor &&
+    merged.titleColor === defaultBlogOGConfig.titleColor &&
+    merged.descriptionColor === defaultBlogOGConfig.descriptionColor &&
+    merged.fontSize?.title === defaultBlogOGConfig.fontSize?.title &&
+    merged.fontSize?.description === defaultBlogOGConfig.fontSize?.description
+
+  if (isDefaultBlogImage) {
     return defaultOGUrl
   }
 
-  const merged = { ...defaultCustomOGConfig, ...config }
-
   const params = new URLSearchParams({
+    ...(variant !== 'blog' || !isDefaultBlogImage ? { variant } : {}),
     ...(merged.title && { title: merged.title }),
     ...(merged.description && { description: merged.description }),
     ...(merged.image && { image: merged.image }),
