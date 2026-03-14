@@ -92,8 +92,10 @@ export function parseMarkdownContent(content: string): Array<{
 // Import each post so both client and server bundles include the content.
 // When adding a new post: add the file under src/content/blog/<slug>.md then add one line below.
 import aiEntryBarrierEngineers from '../content/blog/ai-entry-barrier-engineers.md?raw'
+import aiIsReshapingOpenSourceContribution from '../content/blog/ai-is-reshaping-open-source-contribution.md?raw'
 
 const blogPosts: Record<string, string> = {
+  'ai-is-reshaping-open-source-contribution': aiIsReshapingOpenSourceContribution,
   'ai-entry-barrier-engineers': aiEntryBarrierEngineers,
 }
 
