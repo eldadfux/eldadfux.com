@@ -36,15 +36,6 @@ export function ExperienceSection() {
             >
               Appwrite
             </a>
-            {' '}and{' '}
-            <a
-              href="https://imagine.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#2dd4bf] hover:underline underline-offset-2"
-            >
-              Imagine
-            </a>
             .
           </p>
           <p

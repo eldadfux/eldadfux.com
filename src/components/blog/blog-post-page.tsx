@@ -164,16 +164,7 @@ export function BlogPostPage({ post }: BlogPostPageProps) {
             className="text-[11px] text-[#5a5652] tracking-[0.12em] uppercase"
             style={{ fontFamily: 'JetBrains Mono, monospace' }}
           >
-            Built with {' '}
-            <a
-              href="https://imagine.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#8a8580] hover:text-[#2dd4bf] transition-colors"
-            >
-              Imagine
-            </a>
-            , powered by{' '}
+            Powered by{' '}
             <a
               href="https://appwrite.io"
               target="_blank"

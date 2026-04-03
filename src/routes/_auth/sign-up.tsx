@@ -1,7 +1,3 @@
-/**
- * @imagine-readonly
- */
-
 import { useMutation } from '@tanstack/react-query'
 import {
   createFileRoute,

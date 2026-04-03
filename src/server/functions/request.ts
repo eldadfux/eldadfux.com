@@ -21,5 +21,5 @@ export const getBaseUrl = createServerFn({ method: 'GET' }).handler(() => {
   }
 
   // Final fallback
-  return `https://imagine-${import.meta.env.VITE_APPWRITE_PROJECT_ID}.appwrite.network`
+  return 'https://eldadfux.com'
 })

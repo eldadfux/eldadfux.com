@@ -31,7 +31,7 @@ export const defaultBlogOGConfig: OGImageConfig = {
   isCustom: false,
   title: 'Eldad\'s Blog',
   description:
-    'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
+    'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite.',
   width: 1200,
   height: 630,
   backgroundColor: '#0d0c0a',
@@ -46,7 +46,7 @@ export const defaultBlogOGConfig: OGImageConfig = {
 
 export const defaultCustomOGConfig: OGImageConfig = {
   isCustom: true,
-  title: 'Imagine App',
+  title: 'Eldad Fux',
   description: 'Build something real',
   width: 1200,
   height: 630,

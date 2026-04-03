@@ -1,5 +1,4 @@
 /**
- * @imagine-readonly
  * These should only be imported in server-side actions (SSR, functions).
  */
 

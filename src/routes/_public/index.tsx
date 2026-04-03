@@ -21,7 +21,7 @@ export const Route = createFileRoute('/_public/')({
       name: 'Eldad\'s Blog',
       url: canonical,
       description:
-        'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
+        'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite.',
     }
     return {
       links: [...(canonical ? [{ rel: 'canonical', href: canonical }] : [])],
