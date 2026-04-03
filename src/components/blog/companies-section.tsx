@@ -11,13 +11,6 @@ const companies = [
     url: 'https://appwrite.io',
     role: 'Founder & CEO',
   },
-  {
-    name: 'Imagine.dev',
-    description:
-      'AI-powered platform that turns ideas into production-ready applications.',
-    url: 'https://imagine.dev',
-    role: 'Founder & CEO',
-  },
 ]
 
 export function CompaniesSection() {

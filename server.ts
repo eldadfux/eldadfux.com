@@ -117,8 +117,8 @@ const ENABLE_ETAG = (process.env.ASSET_PRELOAD_ENABLE_ETAG ?? 'true') === 'true'
 // Optional Gzip feature
 const ENABLE_GZIP = (process.env.ASSET_PRELOAD_ENABLE_GZIP ?? 'true') === 'true'
 
-// Preview mode - disables caching
-const IMAGINE_PREVIEW = process.env.IMAGINE_PREVIEW === 'true'
+// Preview deploy - disables caching (set PREVIEW_DEPLOY=true)
+const isPreviewDeploy = process.env.PREVIEW_DEPLOY === 'true'
 const GZIP_MIN_BYTES = Number(process.env.ASSET_PRELOAD_GZIP_MIN_SIZE ?? 1024) // 1KB
 const GZIP_TYPES = (
   process.env.ASSET_PRELOAD_GZIP_MIME_TYPES ??
@@ -234,7 +234,7 @@ function createResponseHandler(
   return (req: Request) => {
     const headers: Record<string, string> = {
       'Content-Type': asset.type,
-      'Cache-Control': IMAGINE_PREVIEW
+      'Cache-Control': isPreviewDeploy
         ? 'no-cache, no-store, must-revalidate'
         : asset.immutable
           ? 'public, max-age=31536000, immutable'
@@ -362,7 +362,7 @@ async function initializeStaticRoutes(
             return new Response(fileOnDemand, {
               headers: {
                 'Content-Type': metadata.type,
-                'Cache-Control': IMAGINE_PREVIEW
+                'Cache-Control': isPreviewDeploy
                   ? 'no-cache, no-store, must-revalidate'
                   : 'public, max-age=3600',
               },

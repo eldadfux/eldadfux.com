@@ -49,7 +49,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     const baseUrl =
       typeof window !== 'undefined'
         ? window.location.origin
-        : (loaderData?.baseUrl ?? 'https://imagine.dev')
+        : (loaderData?.baseUrl ?? 'https://eldadfux.com')
 
     const config: OGImageConfig = {
       isCustom: false,
@@ -60,7 +60,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     const metadata: OGMetaTags = {
       title: 'Eldad Fux Personal Blog',
       description:
-        'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
+        'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite.',
       image: ogImageUrl,
       url: typeof window !== 'undefined' ? window.location.href : baseUrl,
     }
@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         {
           name: 'description',
           content:
-            'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite and Imagine.dev.',
+            'Thoughts on open source, engineering, and building dev tools—from the founder of Appwrite.',
         },
         { property: 'og:site_name', content: 'Eldad Fux Personal Blog' },
         { property: 'og:locale', content: 'en_US' },
