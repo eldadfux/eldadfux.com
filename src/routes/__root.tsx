@@ -7,6 +7,7 @@ import appCss from '../styles.css?url'
 import { useEffect, useState } from 'react'
 
 import type { QueryClient } from '@tanstack/react-query'
+import { AppwriteAnalyticsInit } from '@/components/appwrite-analytics-init'
 import { PlausibleInit } from '@/components/plausible-init'
 import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from 'next-themes'
@@ -187,6 +188,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ThemeProviderWrapper>
           {children}
           <PlausibleInit />
+          <AppwriteAnalyticsInit />
           <Toaster />
           {/* <TanStackDevtools
             config={{
