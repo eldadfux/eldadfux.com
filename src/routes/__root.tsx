@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react'
 
 import type { QueryClient } from '@tanstack/react-query'
 import { AppwriteAnalyticsInit } from '@/components/appwrite-analytics-init'
-import { PlausibleInit } from '@/components/plausible-init'
 import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from 'next-themes'
 import { authMiddleware } from '@/server/functions/auth'
@@ -187,7 +186,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body style={{ fontFamily: 'Inter, sans-serif' }} className="bg-[#0d0c0a] text-[#e6e2db]">
         <ThemeProviderWrapper>
           {children}
-          <PlausibleInit />
           <AppwriteAnalyticsInit />
           <Toaster />
           {/* <TanStackDevtools
